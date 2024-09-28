@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import "dotenv/config";
 import { createHash, isValidPassword } from "../utils.js";
 import CartDaoMongo from "../daos/mongodb/cart.dao.js";
-import UserDTO from "../dto/user.dto.js";
 
 const userDao = new UserDaoMongo();
 const cartDao = new CartDaoMongo();
@@ -62,7 +61,7 @@ export default class UserService extends Services {
   getUserById = async (id) => {
     try {
       const user = await this.dao.getUserById(id);
-      return new UserDTO(user);
+      return user;
     } catch (error) {
       throw new Error(error);
     }
